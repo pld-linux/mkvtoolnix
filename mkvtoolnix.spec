@@ -10,14 +10,14 @@ Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
 # Source0-md5:	593c9f51ff99c90a017117bad2edd3e4
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
-BuildRequires:	bzip2-devel 
+BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	flac-devel
 BuildRequires:	libebml-devel >= 0.7.3
 BuildRequires:	libmatroska-devel >= 0.7.5
 BuildRequires:	libogg-devel
 BuildRequires:	libvorbis-devel
-BuildRequires:	zlib-devel 
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
