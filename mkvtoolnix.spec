@@ -2,6 +2,7 @@
 # - compile mkvinfo's GUI and mmg (--enable-gui)
 
 Summary:	Matroska video utilities
+Summary(pl):	Narzêdzia do filmów w formacie Matroska
 Name:		mkvtoolnix
 Version:	1.4.0
 Release:	0.1
@@ -22,6 +23,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Matroska video utilities.
+
+%description -l pl
+Narzêdzia do filmów w formacie Matroska.
 
 %prep
 %setup -q
