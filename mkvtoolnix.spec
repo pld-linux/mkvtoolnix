@@ -4,12 +4,12 @@
 Summary:	Matroska video utilities
 Summary(pl):	Narzêdzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	1.5.0
+Version:	1.5.5
 Release:	0.1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	71c447f02ee306dbff53804c770b5ff3
+# Source0-md5:	f86b4b8e3ae07a3d8d2fd69a1f2dd3d5
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
