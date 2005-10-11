@@ -1,6 +1,9 @@
 # TODO:
 # - make subpackage -gui (wxWidgets deps)
 #
+# Conditional build
+%bcond_without	gui	# disable GUI build (wxWigets deps)
+#
 Summary:	Matroska video utilities
 Summary(pl):	Narzêdzia do filmów w formacie Matroska
 Name:		mkvtoolnix
@@ -20,7 +23,7 @@ BuildRequires:	libmatroska-devel >= 0.7.5
 BuildRequires:	libogg-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	sed >= 4.0
-BuildRequires:	wxGTK2-devel
+%{?with_gui:BuildRequires:	wxGTK2-devel}
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,10 +38,13 @@ Narzêdzia do filmów w formacie Matroska.
 %patch0 -p1
 
 %build
+%if %{with gui}
 %{__sed} -i 's,wx-config,wx-gtk2-ansi-config,g' configure
+%endif
 %{__sed} -i 's,$INSTDIR,%{_datadir}/%{name},' src/mmg/mmg.cpp
 
-%configure
+%configure \
+	--enable-gui=%{?with_gui:yes}%{?!with_gui:no}
 %{__make}
 
 %install
