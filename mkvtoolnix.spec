@@ -7,19 +7,19 @@
 Summary:	Matroska video utilities
 Summary(pl):	Narzêdzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	1.5.5
-Release:	0.2
+Version:	1.6.5
+Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	f86b4b8e3ae07a3d8d2fd69a1f2dd3d5
+# Source0-md5:	ad6762f556bdfbadf815c7d2681a2691
 Patch0:		%{name}-help.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	flac-devel
-BuildRequires:	libebml-devel >= 0.7.3
-BuildRequires:	libmatroska-devel >= 0.7.5
+BuildRequires:	libebml-devel >= 0.7.5
+BuildRequires:	libmatroska-devel >= 0.8.0
 BuildRequires:	libogg-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	sed >= 4.0
