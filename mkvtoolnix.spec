@@ -5,7 +5,7 @@
 %bcond_without	gui	# disable GUI build (wxWigets deps)
 #
 Summary:	Matroska video utilities
-Summary(pl):	Narzêdzia do filmów w formacie Matroska
+Summary(pl.UTF-8):   NarzÄ™dzia do filmÃ³w w formacie Matroska
 Name:		mkvtoolnix
 Version:	2.0.0
 Release:	1
@@ -32,8 +32,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Matroska video utilities.
 
-%description -l pl
-Narzêdzia do filmów w formacie Matroska.
+%description -l pl.UTF-8
+NarzÄ™dzia do filmÃ³w w formacie Matroska.
 
 %prep
 %setup -q
