@@ -1,18 +1,19 @@
 # TODO:
-# - make subpackage -gui (wxWidgets deps)
+# - make -gui subpackages (wxWidgets and Qt4 deps)
 #
 # Conditional build
-%bcond_without	gui	# disable GUI build (wxWigets deps)
+%bcond_without	qt	# disable GUI build (Qt4 deps)
+%bcond_without	wx	# disable GUI build (wxWigets deps)
 #
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	2.0.2
+Version:	2.1.0
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	48b478caef80117b6cd3cd9b06e9f104
+# Source0-md5:	0836c4fad0b8da784ef2ddd7a54e84b4
 Patch0:		%{name}-help.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 BuildRequires:	bzip2-devel
@@ -24,8 +25,9 @@ BuildRequires:	libogg-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	lzo-devel
 BuildRequires:	pcre-cxx-devel
+%{?with_qt:BuildRequires:	qt4-build}
 BuildRequires:	sed >= 4.0
-%{?with_gui:BuildRequires:	wxGTK2-devel >= 2.6.0}
+%{?with_wx:BuildRequires:	wxGTK2-devel >= 2.6.0}
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -40,13 +42,17 @@ Narzędzia do filmów w formacie Matroska.
 %patch0 -p1
 
 %build
-%if %{with gui}
+%if %{with wx}
 %{__sed} -i 's,wx-config,wx-gtk2-ansi-config,g' configure
 %endif
 %{__sed} -i 's,$INSTDIR,%{_datadir}/%{name},' src/mmg/mmg.cpp
 
 %configure \
-	--enable-gui=%{?with_gui:yes}%{?!with_gui:no}
+	--enable-gui \
+	--%{?with_wx:en}%{?!with_wx:dis}able-wxwidgets \
+	--%{?with_qt:en}%{?!with_qt:dis}able-qt \
+	%{?with_qt:--with-moc=/usr/bin/qt4-moc} \
+	%{?with_qt:--with-uic=/usr/bin/qt4-uic}
 %{__make}
 
 %install
