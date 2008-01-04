@@ -25,7 +25,7 @@ BuildRequires:	libogg-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	lzo-devel
 BuildRequires:	pcre-cxx-devel
-%{?with_qt:BuildRequires:	qt4-build}
+%{?with_qt:BuildRequires:	qt4-build >= 4.3.3-3}
 BuildRequires:	sed >= 4.0
 %{?with_wx:BuildRequires:	wxGTK2-devel >= 2.6.0}
 BuildRequires:	zlib-devel
@@ -51,8 +51,8 @@ Narzędzia do filmów w formacie Matroska.
 	--enable-gui \
 	--%{?with_wx:en}%{?!with_wx:dis}able-wxwidgets \
 	--%{?with_qt:en}%{?!with_qt:dis}able-qt \
-	%{?with_qt:--with-moc=/usr/bin/qt4-moc} \
-	%{?with_qt:--with-uic=/usr/bin/qt4-uic}
+	%{?with_qt:--with-moc=/usr/bin/moc-qt4} \
+	%{?with_qt:--with-uic=/usr/bin/uic-qt4}
 %{__make}
 
 %install
