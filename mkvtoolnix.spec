@@ -16,16 +16,20 @@ Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.
 # Source0-md5:	57397800c6be11db0b62e7285c8dab82
 Patch0:		%{name}-help.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
+%{?with_qt:BuildRequires:	QtGui-devel}
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	flac-devel
 BuildRequires:	libebml-devel >= 0.7.7
-BuildRequires:	libmatroska-devel >= 0.8.0
+BuildRequires:	libmatroska-devel >= 0.8.1
 BuildRequires:	libogg-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	lzo-devel
 BuildRequires:	pcre-cxx-devel
-%{?with_qt:BuildRequires:	qt4-build >= 4.3.3-3}
+%if %{with qt}
+BuildRequires:	pkgconfig
+BuildRequires:	qt4-build >= 4.3.3-3
+%endif
 BuildRequires:	sed >= 4.0
 %{?with_wx:BuildRequires:	wxGTK2-devel >= 2.6.0}
 BuildRequires:	zlib-devel
