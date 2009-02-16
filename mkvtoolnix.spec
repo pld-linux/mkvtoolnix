@@ -8,14 +8,13 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	2.4.0
+Version:	2.4.2
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	125a6305de16236754d7554fa5b597cf
-Patch0:		%{name}-help.patch
-Patch1:		%{name}-configure.patch
+# Source0-md5:	050bc9019cfa10e243f17b5e84f5a05f
+Patch0:		%{name}-configure.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	QtGui-devel}
 BuildRequires:	boost-devel >= 1.20
@@ -47,7 +46,6 @@ Narzędzia do filmów w formacie Matroska.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %if %{with wx}
