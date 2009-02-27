@@ -8,12 +8,12 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	2.4.2
+Version:	2.5.1
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	050bc9019cfa10e243f17b5e84f5a05f
+# Source0-md5:	22f6572eb34b6e7cfda9e621f0936b10
 Patch0:		%{name}-configure.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	QtGui-devel}
@@ -21,6 +21,7 @@ BuildRequires:	boost-devel >= 1.20
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	flac-devel
+BuildRequires:	gettext-devel
 BuildRequires:	libebml-devel >= 0.7.7
 BuildRequires:	libmagic-devel
 BuildRequires:	libmatroska-devel >= 0.8.1
@@ -72,10 +73,12 @@ install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/doc/images
 install doc/*.h* $RPM_BUILD_ROOT%{_datadir}/%{name}/doc
 install doc/images/* $RPM_BUILD_ROOT%{_datadir}/%{name}/doc/images
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
