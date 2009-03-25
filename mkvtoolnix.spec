@@ -8,16 +8,16 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	2.5.2
+Version:	2.6.0
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	85ae3a5e447f0cdc41d9bc3b5c9b1358
+# Source0-md5:	034e6c4a11b4a9536d250a309c16be85
 Patch0:		%{name}-configure.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	QtGui-devel}
-BuildRequires:	boost-devel >= 1.20
+BuildRequires:	boost-devel >= 1.29
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	flac-devel
@@ -33,8 +33,7 @@ BuildRequires:	pcre-cxx-devel
 BuildRequires:	pkgconfig
 BuildRequires:	qt4-build >= 4.3.3-3
 %endif
-BuildRequires:	sed >= 4.0
-%{?with_wx:BuildRequires:	wxGTK2-devel >= 2.6.0}
+%{?with_wx:BuildRequires:	wxGTK2-unicode-devel >= 2.6.0}
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -49,17 +48,14 @@ Narzędzia do filmów w formacie Matroska.
 %patch0 -p1
 
 %build
-%if %{with wx}
-%{__sed} -i 's,wx-config,wx-gtk2-ansi-config,g' configure
-%endif
-%{__sed} -i 's,$INSTDIR,%{_datadir}/%{name},' src/mmg/mmg.cpp
-
 %configure \
 	--enable-gui \
 	--%{?with_wx:en}%{?!with_wx:dis}able-wxwidgets \
 	--%{?with_qt:en}%{?!with_qt:dis}able-qt \
 	%{?with_qt:--with-moc=/usr/bin/moc-qt4} \
-	%{?with_qt:--with-uic=/usr/bin/uic-qt4}
+	%{?with_qt:--with-uic=/usr/bin/uic-qt4} \
+	%{?with_wx:--with-wx-config=/usr/bin/wx-gtk2-unicode-config}
+
 %{__make}
 
 %install
