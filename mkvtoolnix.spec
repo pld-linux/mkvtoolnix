@@ -2,23 +2,24 @@
 # - make -gui subpackages (wxWidgets and Qt4 deps)
 #
 # Conditional build
+%bcond_with	verbose	# verbose build (V=1)
 %bcond_without	qt	# disable GUI build (Qt4 deps)
 %bcond_without	wx	# disable GUI build (wxWigets deps)
 #
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	2.8.0
+Version:	2.9.8
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	7f8e12e4e73872c9e82c23efa41e0be0
+# Source0-md5:	eae428821c69e7a16b690f4eca6bf567
 Patch0:		%{name}-configure.patch
 Patch1:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	QtGui-devel}
-BuildRequires:	boost-devel >= 1.29
+BuildRequires:	boost-devel >= 1.32
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	flac-devel
@@ -58,7 +59,8 @@ Narzędzia do filmów w formacie Matroska.
 	%{?with_qt:--with-uic=/usr/bin/uic-qt4} \
 	%{?with_wx:--with-wx-config=/usr/bin/wx-gtk2-unicode-config}
 
-%{__make}
+%{__make} \
+	%{?with_verbose:V=1}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -70,8 +72,6 @@ install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/doc/images
 # help files
 install doc/*.h* $RPM_BUILD_ROOT%{_datadir}/%{name}/doc
 install doc/images/* $RPM_BUILD_ROOT%{_datadir}/%{name}/doc/images
-
-mv -f $RPM_BUILD_ROOT%{_datadir}/locale/{zh,zh_CN}
 
 %find_lang %{name}
 
