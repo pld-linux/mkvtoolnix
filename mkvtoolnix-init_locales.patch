@@ -5,7 +5,35 @@
  
    if (chosen_locale.empty())
 -    mxerror(Y("The locale could not be set properly. Check the LANG, LC_ALL and LC_MESSAGES environment variables.\n"));
-+    mxwarn(Y("The locale could not be set properly. Check the LANG, LC_ALL and LC_MESSAGES environment variables.\n"));
++    mxwarn("The locale could not be set properly. Check the LANG, LC_ALL and LC_MESSAGES environment variables.\n");
  
    locale_dir = MTX_LOCALE_DIR;
  # endif  // SYS_WINDOWS
+--- mkvtoolnix-2.9.7/src/mmg/options/mmg.cpp.orig	2009-07-01 18:40:03.000000000 +0200
++++ mkvtoolnix-2.9.7/src/mmg/options/mmg.cpp	2009-07-05 19:50:07.000000000 +0200
+@@ -163,8 +163,9 @@
+   siz_all->Add(new wxStaticLine(this),                             0, wxGROW | wxLEFT | wxRIGHT, 5);
+   siz_all->AddSpacer(5);
+ 
++  wxBoxSizer *siz_line;
+ #if defined(HAVE_LIBINTL_H)
+-  wxBoxSizer *siz_line = new wxBoxSizer(wxHORIZONTAL);
++  siz_line = new wxBoxSizer(wxHORIZONTAL);
+   siz_line->Add(st_ui_language, 0, wxALIGN_CENTER_VERTICAL);
+   siz_line->Add(cob_ui_language, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
+ 
+--- mkvtoolnix-2.9.7/src/mmg/options/mmg.cpp.orig	2009-07-05 19:51:07.000000000 +0200
++++ mkvtoolnix-2.9.7/src/mmg/options/mmg.cpp	2009-07-05 19:59:06.000000000 +0200
+@@ -248,10 +248,12 @@
+   b_browse_output_directory->Enable(enable && odm_is_fixed);
+ }
+ 
++#if defined(HAVE_LIBINTL_H)
+ std::string
+ optdlg_mmg_tab::get_selected_ui_language() {
+   return m_sorted_locales[cob_ui_language->GetSelection()];
+ }
++#endif  // HAVE_LIBINTL_H
+ 
+ void
+ optdlg_mmg_tab::save_options() {
