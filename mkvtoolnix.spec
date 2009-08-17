@@ -14,7 +14,7 @@ Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	eae428821c69e7a16b690f4eca6bf567
+# Source0-md5:	7b049aa43c6b39dfcb19f5a46d5574ac
 Patch0:		%{name}-configure.patch
 Patch1:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
