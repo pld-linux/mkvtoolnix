@@ -53,8 +53,8 @@ Narzędzia do filmów w formacie Matroska.
 %build
 %configure \
 	--enable-gui \
-	--%{?with_wx:en}%{?!with_wx:dis}able-wxwidgets \
-	--%{?with_qt:en}%{?!with_qt:dis}able-qt \
+	--%{?with_wx:en}%{!?with_wx:dis}able-wxwidgets \
+	--%{?with_qt:en}%{!?with_qt:dis}able-qt \
 	%{?with_qt:--with-moc=/usr/bin/moc-qt4} \
 	%{?with_qt:--with-uic=/usr/bin/uic-qt4} \
 	%{?with_wx:--with-wx-config=/usr/bin/wx-gtk2-unicode-config}
