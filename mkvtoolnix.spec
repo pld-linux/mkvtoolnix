@@ -9,17 +9,16 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	3.0.0
+Version:	3.2.0
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	2e9373edd5a5523313d8f5bea3ee8f8e
-Patch0:		%{name}-configure.patch
-Patch1:		%{name}-init_locales.patch
+# Source0-md5:	9bf31280cb07870771e69de0287dc769
+Patch0:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	QtGui-devel}
-BuildRequires:	boost-devel >= 1.32
+BuildRequires:	boost-devel >= 1.34
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	flac-devel
@@ -48,13 +47,14 @@ Narzędzia do filmów w formacie Matroska.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %configure \
 	--enable-gui \
 	--%{?with_wx:en}%{!?with_wx:dis}able-wxwidgets \
 	--%{?with_qt:en}%{!?with_qt:dis}able-qt \
+	--with-boost-filesystem=boost_filesystem \
+	--with-boost-regex=boost_regex \
 	%{?with_qt:--with-moc=/usr/bin/moc-qt4} \
 	%{?with_qt:--with-uic=/usr/bin/uic-qt4} \
 	%{?with_wx:--with-wx-config=/usr/bin/wx-gtk2-unicode-config}
@@ -64,14 +64,9 @@ Narzędzia do filmów w formacie Matroska.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/doc/images
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-# help files
-install doc/*.h* $RPM_BUILD_ROOT%{_datadir}/%{name}/doc
-install doc/images/* $RPM_BUILD_ROOT%{_datadir}/%{name}/doc/images
 
 %find_lang %{name}
 
@@ -82,5 +77,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
-%{_datadir}/%{name}
+%dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/guide
+%{_datadir}/%{name}/guide/en
+%lang(zh_CN) %{_datadir}/%{name}/guide/zh_CN
 %{_mandir}/man1/*
+%lang(ja) %{_mandir}/ja/man1/*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/*
