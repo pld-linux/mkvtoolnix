@@ -1,5 +1,6 @@
 # TODO:
 # - make -gui subpackages (wxWidgets and Qt4 deps)
+# - boost autodetection fails ($BOOSTLIBDIR empty), so all boost libs must be passed --with-boost-xxx=xxxx
 #
 # Conditional build
 %bcond_with	verbose	# verbose build (V=1)
@@ -9,12 +10,12 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	3.2.0
+Version:	4.2.0
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	9bf31280cb07870771e69de0287dc769
+# Source0-md5:	de3e99598d47d0a2226269f79faabbfd
 Patch0:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	QtGui-devel}
@@ -55,6 +56,7 @@ Narzędzia do filmów w formacie Matroska.
 	--%{?with_qt:en}%{!?with_qt:dis}able-qt \
 	--with-boost-filesystem=boost_filesystem \
 	--with-boost-regex=boost_regex \
+	--with-boost-system=boost_system \
 	%{?with_qt:--with-moc=/usr/bin/moc-qt4} \
 	%{?with_qt:--with-uic=/usr/bin/uic-qt4} \
 	%{?with_wx:--with-wx-config=/usr/bin/wx-gtk2-unicode-config}
@@ -66,6 +68,7 @@ Narzędzia do filmów w formacie Matroska.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
+	INSTALL="install -cp" \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang %{name}
@@ -81,6 +84,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/guide
 %{_datadir}/%{name}/guide/en
 %lang(zh_CN) %{_datadir}/%{name}/guide/zh_CN
+%{_datadir}/mime/packages/mkvtoolnix.xml
+%{_desktopdir}/mkvinfo.desktop
+%{_desktopdir}/mkvmergeGUI.desktop
+%{_iconsdir}/hicolor/*/apps/mkvinfo.png
+%{_iconsdir}/hicolor/*/apps/mkvmergeGUI.png
 %{_mandir}/man1/*
 %lang(ja) %{_mandir}/ja/man1/*
+%lang(nl) %{_mandir}/nl/man1/*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/*
