@@ -11,7 +11,7 @@ Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
 Version:	4.6.0
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
@@ -19,14 +19,14 @@ Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.
 Patch0:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	QtGui-devel}
-BuildRequires:	boost-devel >= 1.34
+BuildRequires:	boost-devel >= 1.36
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	flac-devel
 BuildRequires:	gettext-devel
-BuildRequires:	libebml-devel >= 0.7.7
+BuildRequires:	libebml-devel >= 1.2.0
 BuildRequires:	libmagic-devel
-BuildRequires:	libmatroska-devel >= 0.8.1
+BuildRequires:	libmatroska-devel >= 1.1.0
 BuildRequires:	libogg-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	lzo-devel
@@ -35,6 +35,7 @@ BuildRequires:	pcre-cxx-devel
 BuildRequires:	pkgconfig
 BuildRequires:	qt4-build >= 4.3.3-3
 %endif
+BuildRequires:	ruby-rake
 %{?with_wx:BuildRequires:	wxGTK2-unicode-devel >= 2.6.0}
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -51,6 +52,7 @@ Narzędzia do filmów w formacie Matroska.
 
 %build
 %configure \
+	--docdir=%{_datadir}/%{name} \
 	--enable-gui \
 	--%{?with_wx:en}%{!?with_wx:dis}able-wxwidgets \
 	--%{?with_qt:en}%{!?with_qt:dis}able-qt \
@@ -61,13 +63,12 @@ Narzędzia do filmów w formacie Matroska.
 	%{?with_qt:--with-uic=/usr/bin/uic-qt4} \
 	%{?with_wx:--with-wx-config=/usr/bin/wx-gtk2-unicode-config}
 
-%{__make} \
-	%{?with_verbose:V=1}
+rake %{?with_verbose:V=1}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+rake install \
 	INSTALL="install -cp" \
 	DESTDIR=$RPM_BUILD_ROOT
 
