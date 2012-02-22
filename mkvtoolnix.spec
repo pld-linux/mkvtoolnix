@@ -93,4 +93,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 %lang(ja) %{_mandir}/ja/man1/*
 %lang(nl) %{_mandir}/nl/man1/*
+%lang(uk) %{_mandir}/uk/man1/*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/*
