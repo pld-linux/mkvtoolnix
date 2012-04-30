@@ -10,12 +10,12 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	5.3.0
-Release:	3
+Version:	5.5.0
+Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	2cd84ff24e1d9217dd3caf170f34e758
+# Source0-md5:	2c89693b2a2391ece14a5c93ba8a9974
 Patch0:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	QtGui-devel}
@@ -35,7 +35,8 @@ BuildRequires:	pcre-cxx-devel
 BuildRequires:	pkgconfig
 BuildRequires:	qt4-build >= 4.3.3-3
 %endif
-BuildRequires:	ruby-rake
+# required by rake
+BuildRequires:	ruby-modules
 %{?with_wx:BuildRequires:	wxGTK2-unicode-devel >= 2.6.0}
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -61,7 +62,8 @@ Narzędzia do filmów w formacie Matroska.
 	--with-boost-system=boost_system \
 	%{?with_qt:--with-moc=/usr/bin/moc-qt4} \
 	%{?with_qt:--with-uic=/usr/bin/uic-qt4} \
-	%{?with_wx:--with-wx-config=/usr/bin/wx-gtk2-unicode-config}
+	%{?with_wx:--with-wx-config=/usr/bin/wx-gtk2-unicode-config} \
+	--without-curl
 
 rake %{?with_verbose:V=1}
 
