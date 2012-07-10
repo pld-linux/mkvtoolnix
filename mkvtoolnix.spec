@@ -10,12 +10,12 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	5.5.0
+Version:	5.7.0
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.bz2
-# Source0-md5:	2c89693b2a2391ece14a5c93ba8a9974
+# Source0-md5:	99ea44be570412dadafe4ccaee0cfe6e
 Patch0:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	QtGui-devel}
@@ -86,12 +86,16 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/guide
 %{_datadir}/%{name}/guide/en
+%lang(es) %{_datadir}/%{name}/guide/es
 %lang(zh_CN) %{_datadir}/%{name}/guide/zh_CN
 %{_datadir}/mime/packages/mkvtoolnix.xml
 %{_desktopdir}/mkvinfo.desktop
 %{_desktopdir}/mkvmergeGUI.desktop
+%{_iconsdir}/hicolor/*/apps/mkvextract.png
 %{_iconsdir}/hicolor/*/apps/mkvinfo.png
+%{_iconsdir}/hicolor/*/apps/mkvmerge.png
 %{_iconsdir}/hicolor/*/apps/mkvmergeGUI.png
+%{_iconsdir}/hicolor/*/apps/mkvpropedit.png
 %{_mandir}/man1/*
 %lang(ja) %{_mandir}/ja/man1/*
 %lang(nl) %{_mandir}/nl/man1/*
