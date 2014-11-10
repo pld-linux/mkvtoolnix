@@ -18,7 +18,7 @@ Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.
 # Source0-md5:	190ce613bde843def89a499330ca779b
 Patch0:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
-%{?with_qt:BuildRequires:	QtGui-devel}
+%{?with_qt:BuildRequires:	Qt5Gui-devel}
 BuildRequires:	boost-devel >= 1.36
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
@@ -33,7 +33,7 @@ BuildRequires:	lzo-devel
 BuildRequires:	pcre-cxx-devel
 %if %{with qt}
 BuildRequires:	pkgconfig
-BuildRequires:	qt4-build >= 4.3.3-3
+BuildRequires:	qt5-build >= 4.3.3-3
 %endif
 # required by rake
 BuildRequires:	ruby-modules
@@ -60,8 +60,8 @@ Narzędzia do filmów w formacie Matroska.
 	--with-boost-filesystem=boost_filesystem \
 	--with-boost-regex=boost_regex \
 	--with-boost-system=boost_system \
-	%{?with_qt:--with-moc=/usr/bin/moc-qt4} \
-	%{?with_qt:--with-uic=/usr/bin/uic-qt4} \
+	%{?with_qt:--with-moc=/usr/bin/moc-qt5} \
+	%{?with_qt:--with-uic=/usr/bin/uic-qt5} \
 	%{?with_wx:--with-wx-config=/usr/bin/wx-gtk2-unicode-config} \
 	--without-curl
 
