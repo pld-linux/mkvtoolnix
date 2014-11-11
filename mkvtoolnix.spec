@@ -88,6 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/guide/en
 %lang(es) %{_datadir}/%{name}/guide/es
 %lang(eu) %{_datadir}/%{name}/guide/eu
+%lang(nl) %{_datadir}/%{name}/guide/nl
 %lang(zh_CN) %{_datadir}/%{name}/guide/zh_CN
 %{_datadir}/mime/packages/mkvtoolnix.xml
 %{_desktopdir}/mkvinfo.desktop
@@ -98,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/mkvmergeGUI.png
 %{_iconsdir}/hicolor/*/apps/mkvpropedit.png
 %{_mandir}/man1/*
+%lang(de) %{_mandir}/de/man1/*
 %lang(ja) %{_mandir}/ja/man1/*
 %lang(nl) %{_mandir}/nl/man1/*
 %lang(uk) %{_mandir}/uk/man1/*
