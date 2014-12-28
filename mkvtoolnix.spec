@@ -23,7 +23,7 @@ BuildRequires:	boost-devel >= 1.36
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	flac-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	libebml-devel >= 1.2.0
 BuildRequires:	libmagic-devel
 BuildRequires:	libmatroska-devel >= 1.1.0
