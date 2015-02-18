@@ -35,7 +35,7 @@ BuildRequires:	pcre-cxx-devel
 BuildRequires:	pkgconfig
 BuildRequires:	qt5-build >= 4.3.3-3
 %endif
-# required by rake
+BuildRequires:	rake
 BuildRequires:	ruby-modules
 %{?with_wx:BuildRequires:	wxGTK2-unicode-devel >= 2.6.0}
 BuildRequires:	zlib-devel
