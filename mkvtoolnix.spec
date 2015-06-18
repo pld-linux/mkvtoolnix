@@ -52,6 +52,7 @@ Narzędzia do filmów w formacie Matroska.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__autoconf}
