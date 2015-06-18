@@ -68,7 +68,7 @@ Narzędzia do filmów w formacie Matroska.
 	%{?with_wx:--with-wx-config=/usr/bin/wx-gtk2-unicode-config} \
 	--without-curl
 
-rake %{?with_verbose:V=1}
+LC_ALL="C.UTF-8" rake %{?with_verbose:V=1}
 
 %install
 rm -rf $RPM_BUILD_ROOT
