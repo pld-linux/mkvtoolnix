@@ -74,7 +74,7 @@ LC_ALL="C.UTF-8" rake %{?with_verbose:V=1}
 %install
 rm -rf $RPM_BUILD_ROOT
 
-rake install \
+LC_ALL="C.UTF-8" rake install \
 	INSTALL="install -cp" \
 	DESTDIR=$RPM_BUILD_ROOT
 
