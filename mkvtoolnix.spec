@@ -17,8 +17,10 @@ Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
 # Source0-md5:	b73789734f7ca3041473ad905c89143f
 Patch0:		%{name}-init_locales.patch
+Patch1:		x32.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	Qt5Gui-devel}
+BuildRequires:	autoconf
 BuildRequires:	boost-devel >= 1.36
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
@@ -52,6 +54,7 @@ Narzędzia do filmów w formacie Matroska.
 %patch0 -p1
 
 %build
+%{__autoconf}
 %configure \
 	--docdir=%{_datadir}/%{name} \
 	--enable-gui \
