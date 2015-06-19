@@ -97,10 +97,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mime/packages/mkvtoolnix.xml
 %{_desktopdir}/mkvinfo.desktop
 %{_desktopdir}/mkvmergeGUI.desktop
+%{_desktopdir}/mkvtoolnix-gui.desktop
 %{_iconsdir}/hicolor/*/apps/mkvextract.png
 %{_iconsdir}/hicolor/*/apps/mkvinfo.png
 %{_iconsdir}/hicolor/*/apps/mkvmerge.png
-%{_iconsdir}/hicolor/*/apps/mkvmergeGUI.png
+%{_iconsdir}/hicolor/*/apps/mkvtoolnix-gui.png
 %{_iconsdir}/hicolor/*/apps/mkvpropedit.png
 %{_mandir}/man1/*
 %lang(de) %{_mandir}/de/man1/*
