@@ -10,14 +10,13 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	7.9.0
-Release:	2
+Version:	9.1.0
+Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	b73789734f7ca3041473ad905c89143f
+# Source0-md5:	7eafd6f5a9affd35f9cbf607d8ccf9b3
 Patch0:		%{name}-init_locales.patch
-Patch1:		x32.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	Qt5Gui-devel}
 BuildRequires:	autoconf
@@ -52,7 +51,6 @@ Narzędzia do filmów w formacie Matroska.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__autoconf}
@@ -85,18 +83,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README.md TODO
+%doc AUTHORS ChangeLog README.md
 %attr(755,root,root) %{_bindir}/*
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/guide
-%{_datadir}/%{name}/guide/en
-%lang(es) %{_datadir}/%{name}/guide/es
-%lang(eu) %{_datadir}/%{name}/guide/eu
-%lang(nl) %{_datadir}/%{name}/guide/nl
-%lang(zh_CN) %{_datadir}/%{name}/guide/zh_CN
 %{_datadir}/mime/packages/mkvtoolnix.xml
 %{_desktopdir}/mkvinfo.desktop
-%{_desktopdir}/mkvmergeGUI.desktop
 %{_desktopdir}/mkvtoolnix-gui.desktop
 %{_iconsdir}/hicolor/*/apps/mkvextract.png
 %{_iconsdir}/hicolor/*/apps/mkvinfo.png
@@ -104,8 +94,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/mkvtoolnix-gui.png
 %{_iconsdir}/hicolor/*/apps/mkvpropedit.png
 %{_mandir}/man1/*
+%lang(ca) %{_mandir}/ca/man1/*
 %lang(de) %{_mandir}/de/man1/*
+%lang(es) %{_mandir}/es/man1/*
 %lang(ja) %{_mandir}/ja/man1/*
+%lang(ko) %{_mandir}/ko/man1/*
 %lang(nl) %{_mandir}/nl/man1/*
+%lang(pl) %{_mandir}/pl/man1/*
 %lang(uk) %{_mandir}/uk/man1/*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/*
