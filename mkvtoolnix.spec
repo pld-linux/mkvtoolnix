@@ -17,10 +17,14 @@ Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.
 # Source0-md5:	ab7fc3646f00467acafbde5ad9317320
 Patch0:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
-%{?with_qt:BuildRequires:	Qt5Gui-devel}
+%if %{with qt}
+BuildRequires:	Qt5Gui-devel
+BuildRequires:	Qt5Concurrent-devel
+%endif
 BuildRequires:	autoconf
 BuildRequires:	boost-devel >= 1.36
 BuildRequires:	bzip2-devel
+BuildRequires:	docbook-style-xsl
 BuildRequires:	expat-devel
 BuildRequires:	flac-devel
 BuildRequires:	gettext-tools
