@@ -1,21 +1,20 @@
 # TODO:
-# - make -gui subpackages (wxWidgets and Qt4 deps)
+# - make -gui subpackages (Qt4 deps)
 # - boost autodetection fails ($BOOSTLIBDIR empty), so all boost libs must be passed --with-boost-xxx=xxxx
 #
 # Conditional build
 %bcond_with	verbose	# verbose build (V=1)
 %bcond_without	qt	# disable GUI build (Qt4 deps)
-%bcond_without	wx	# disable GUI build (wxWigets deps)
 #
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	9.1.0
-Release:	2
+Version:	10.0.0
+Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	7eafd6f5a9affd35f9cbf607d8ccf9b3
+# Source0-md5:	ab7fc3646f00467acafbde5ad9317320
 Patch0:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %{?with_qt:BuildRequires:	Qt5Gui-devel}
@@ -38,7 +37,6 @@ BuildRequires:	qt5-build >= 4.3.3-3
 %endif
 BuildRequires:	ruby-rake
 BuildRequires:	ruby-modules
-%{?with_wx:BuildRequires:	wxGTK2-unicode-devel >= 2.6.0}
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,18 +54,15 @@ Narzędzia do filmów w formacie Matroska.
 %{__autoconf}
 %configure \
 	--docdir=%{_datadir}/%{name} \
-	--enable-gui \
-	--%{?with_wx:en}%{!?with_wx:dis}able-wxwidgets \
 	--%{?with_qt:en}%{!?with_qt:dis}able-qt \
 	--with-boost-filesystem=boost_filesystem \
 	--with-boost-regex=boost_regex \
 	--with-boost-system=boost_system \
 	%{?with_qt:--with-moc=/usr/bin/moc-qt5} \
 	%{?with_qt:--with-uic=/usr/bin/uic-qt5} \
-	%{?with_wx:--with-wx-config=/usr/bin/wx-gtk2-unicode-config} \
-	--without-curl
+	--with-docbook-xsl-root=/usr/share/sgml/docbook/xsl-stylesheets
 
-LC_ALL="C.UTF-8" rake %{?with_verbose:V=1}
+LC_ALL="C.UTF-8" rake %{?_smp_mflags} %{?with_verbose:V=1}
 
 %install
 rm -rf $RPM_BUILD_ROOT
