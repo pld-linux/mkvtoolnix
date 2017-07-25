@@ -9,12 +9,12 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	10.0.0
-Release:	3
+Version:	14.0.0
+Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	ab7fc3646f00467acafbde5ad9317320
+# Source0-md5:	fd398444333e981d0c2ce084a975e1b3
 Patch0:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %if %{with qt}
@@ -86,9 +86,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README.md
 %attr(755,root,root) %{_bindir}/*
+%dir %{_datadir}/mkvtoolnix
+%dir %{_datadir}/mkvtoolnix/sounds
+%{_datadir}/mkvtoolnix/sounds/finished-1.ogg
+%{_datadir}/mkvtoolnix/sounds/finished-2.ogg
+%{_datadir}/mkvtoolnix/sounds/finished-3.ogg
 %{_datadir}/mime/packages/mkvtoolnix.xml
-%{_desktopdir}/mkvinfo.desktop
-%{_desktopdir}/mkvtoolnix-gui.desktop
+%{_desktopdir}/org.bunkus.mkvinfo.desktop
+%{_desktopdir}/org.bunkus.mkvtoolnix-gui.desktop
 %{_iconsdir}/hicolor/*/apps/mkvextract.png
 %{_iconsdir}/hicolor/*/apps/mkvinfo.png
 %{_iconsdir}/hicolor/*/apps/mkvmerge.png
