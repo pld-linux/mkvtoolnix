@@ -1,5 +1,3 @@
-# TODO:
-# - make -gui subpackages (Qt4 deps)
 #
 # Conditional build
 %bcond_with	verbose	# verbose build (V=1)
@@ -50,6 +48,14 @@ Matroska video utilities.
 %description -l pl.UTF-8
 Narzędzia do filmów w formacie Matroska.
 
+%package gui
+Summary:	Qt GUI for mkvmerge including a chapter and a header editor
+Group:		Applications/Multimedia
+Requires:	%{name} = %{version}-%{release}
+
+%description gui
+Qt GUI for mkvmerge including a chapter and a header editor.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -73,7 +79,7 @@ LC_ALL="C.UTF-8" rake install \
 	INSTALL="install -cp" \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/sr_RS{,@latin}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/sr_RS{,@latin}
 
 %find_lang %{name}
 
@@ -83,7 +89,55 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README.md NEWS.md
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/mkvmerge
+%attr(755,root,root) %{_bindir}/mkvinfo
+%attr(755,root,root) %{_bindir}/mkvextract
+%attr(755,root,root) %{_bindir}/mkvpropedit
+%{_mandir}/man1/mkvmerge.1*
+%{_mandir}/man1/mkvinfo.1*
+%{_mandir}/man1/mkvextract.1*
+%{_mandir}/man1/mkvpropedit.1*
+%lang(ca) %{_mandir}/ca/man1/mkvmerge.1*
+%lang(ca) %{_mandir}/ca/man1/mkvinfo.1*
+%lang(ca) %{_mandir}/ca/man1/mkvextract.1*
+%lang(ca) %{_mandir}/ca/man1/mkvpropedit.1*
+%lang(de) %{_mandir}/de/man1/mkvmerge.1*
+%lang(de) %{_mandir}/de/man1/mkvinfo.1*
+%lang(de) %{_mandir}/de/man1/mkvextract.1*
+%lang(de) %{_mandir}/de/man1/mkvpropedit.1*
+%lang(es) %{_mandir}/es/man1/mkvmerge.1*
+%lang(es) %{_mandir}/es/man1/mkvinfo.1*
+%lang(es) %{_mandir}/es/man1/mkvextract.1*
+%lang(es) %{_mandir}/es/man1/mkvpropedit.1*
+%lang(ja) %{_mandir}/ja/man1/mkvmerge.1*
+%lang(ja) %{_mandir}/ja/man1/mkvinfo.1*
+%lang(ja) %{_mandir}/ja/man1/mkvextract.1*
+%lang(ja) %{_mandir}/ja/man1/mkvpropedit.1*
+%lang(ko) %{_mandir}/ko/man1/mkvmerge.1*
+%lang(ko) %{_mandir}/ko/man1/mkvinfo.1*
+%lang(ko) %{_mandir}/ko/man1/mkvextract.1*
+%lang(ko) %{_mandir}/ko/man1/mkvpropedit.1*
+%lang(nl) %{_mandir}/nl/man1/mkvmerge.1*
+%lang(nl) %{_mandir}/nl/man1/mkvinfo.1*
+%lang(nl) %{_mandir}/nl/man1/mkvextract.1*
+%lang(nl) %{_mandir}/nl/man1/mkvpropedit.1*
+%lang(pl) %{_mandir}/pl/man1/mkvmerge.1*
+%lang(pl) %{_mandir}/pl/man1/mkvinfo.1*
+%lang(pl) %{_mandir}/pl/man1/mkvextract.1*
+%lang(pl) %{_mandir}/pl/man1/mkvpropedit.1*
+%lang(uk) %{_mandir}/uk/man1/mkvmerge.1*
+%lang(uk) %{_mandir}/uk/man1/mkvinfo.1*
+%lang(uk) %{_mandir}/uk/man1/mkvextract.1*
+%lang(uk) %{_mandir}/uk/man1/mkvpropedit.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/mkvmerge.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/mkvinfo.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/mkvextract.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/mkvpropedit.1*
+
+%if %{with qt}
+%files gui
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/mkvtoolnix-gui
 %dir %{_datadir}/mkvtoolnix
 %dir %{_datadir}/mkvtoolnix/sounds
 %{_datadir}/mkvtoolnix/sounds/finished-1.ogg
@@ -97,13 +151,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/mkvmerge.png
 %{_iconsdir}/hicolor/*/apps/mkvtoolnix-gui.png
 %{_iconsdir}/hicolor/*/apps/mkvpropedit.png
-%{_mandir}/man1/*
-%lang(ca) %{_mandir}/ca/man1/*
-%lang(de) %{_mandir}/de/man1/*
-%lang(es) %{_mandir}/es/man1/*
-%lang(ja) %{_mandir}/ja/man1/*
-%lang(ko) %{_mandir}/ko/man1/*
-%lang(nl) %{_mandir}/nl/man1/*
-%lang(pl) %{_mandir}/pl/man1/*
-%lang(uk) %{_mandir}/uk/man1/*
-%lang(zh_CN) %{_mandir}/zh_CN/man1/*
+%{_mandir}/man1/mkvtoolnix-gui.1*
+%lang(ca) %{_mandir}/ca/man1/mkvtoolnix-gui.1*
+%lang(de) %{_mandir}/de/man1/mkvtoolnix-gui.1*
+%lang(es) %{_mandir}/es/man1/mkvtoolnix-gui.1*
+%lang(ja) %{_mandir}/ja/man1/mkvtoolnix-gui.1*
+%lang(ko) %{_mandir}/ko/man1/mkvtoolnix-gui.1*
+%lang(nl) %{_mandir}/nl/man1/mkvtoolnix-gui.1*
+%lang(pl) %{_mandir}/pl/man1/mkvtoolnix-gui.1*
+%lang(uk) %{_mandir}/uk/man1/mkvtoolnix-gui.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/mkvtoolnix-gui.1*
+%endif
