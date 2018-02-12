@@ -9,38 +9,39 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	14.0.0
+Version:	20.0.0
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	fd398444333e981d0c2ce084a975e1b3
+# Source0-md5:	87a7ea4b6ace3cf954f86108a7d41a0f
 Patch0:		%{name}-init_locales.patch
 URL:		http://www.bunkus.org/videotools/mkvtoolnix/
 %if %{with qt}
-BuildRequires:	Qt5Gui-devel
-BuildRequires:	Qt5Concurrent-devel
+BuildRequires:	Qt5Concurrent-devel >= 5.3.0
+BuildRequires:	Qt5Gui-devel >= 5.3.0
+BuildRequires:	Qt5Multimedia-devel >= 5.3.0
+BuildRequires:	cmark-devel
+BuildRequires:	pkgconfig
+BuildRequires:	qt5-build >= 5.3.0
+BuildRequires:	qt5-linguist >= 5.3.0
 %endif
 BuildRequires:	autoconf
-BuildRequires:	boost-devel >= 1.36
+BuildRequires:	boost-devel >= 1.49.0
 BuildRequires:	bzip2-devel
 BuildRequires:	docbook-style-xsl
-BuildRequires:	expat-devel
 BuildRequires:	flac-devel
 BuildRequires:	gettext-tools
-BuildRequires:	libebml-devel >= 1.2.0
+BuildRequires:	libebml-devel >= 1.3.5
 BuildRequires:	libmagic-devel
-BuildRequires:	libmatroska-devel >= 1.1.0
+BuildRequires:	libmatroska-devel >= 1.4.8
 BuildRequires:	libogg-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	lzo-devel
-BuildRequires:	pcre-cxx-devel
-%if %{with qt}
-BuildRequires:	pkgconfig
-BuildRequires:	qt5-build >= 4.3.3-3
-%endif
-BuildRequires:	ruby-rake
+BuildRequires:	po4a
+BuildRequires:	pugixml-devel
 BuildRequires:	ruby-modules
+BuildRequires:	ruby-rake
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -57,6 +58,7 @@ Narzędzia do filmów w formacie Matroska.
 %build
 %{__autoconf}
 %configure \
+	%{?with_qt:LCONVERT=/usr/bin/lconvert-qt5} \
 	--docdir=%{_datadir}/%{name} \
 	--%{?with_qt:en}%{!?with_qt:dis}able-qt \
 	--with-boost-filesystem=boost_filesystem \
@@ -84,7 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README.md
+%doc AUTHORS README.md NEWS.md
 %attr(755,root,root) %{_bindir}/*
 %dir %{_datadir}/mkvtoolnix
 %dir %{_datadir}/mkvtoolnix/sounds
