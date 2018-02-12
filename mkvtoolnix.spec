@@ -90,53 +90,57 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS README.md NEWS.md
 %attr(755,root,root) %{_bindir}/mkvmerge
-%attr(755,root,root) %{_bindir}/mkvinfo
 %attr(755,root,root) %{_bindir}/mkvextract
 %attr(755,root,root) %{_bindir}/mkvpropedit
 %{_mandir}/man1/mkvmerge.1*
-%{_mandir}/man1/mkvinfo.1*
 %{_mandir}/man1/mkvextract.1*
 %{_mandir}/man1/mkvpropedit.1*
 %lang(ca) %{_mandir}/ca/man1/mkvmerge.1*
-%lang(ca) %{_mandir}/ca/man1/mkvinfo.1*
 %lang(ca) %{_mandir}/ca/man1/mkvextract.1*
 %lang(ca) %{_mandir}/ca/man1/mkvpropedit.1*
 %lang(de) %{_mandir}/de/man1/mkvmerge.1*
-%lang(de) %{_mandir}/de/man1/mkvinfo.1*
 %lang(de) %{_mandir}/de/man1/mkvextract.1*
 %lang(de) %{_mandir}/de/man1/mkvpropedit.1*
 %lang(es) %{_mandir}/es/man1/mkvmerge.1*
-%lang(es) %{_mandir}/es/man1/mkvinfo.1*
 %lang(es) %{_mandir}/es/man1/mkvextract.1*
 %lang(es) %{_mandir}/es/man1/mkvpropedit.1*
 %lang(ja) %{_mandir}/ja/man1/mkvmerge.1*
-%lang(ja) %{_mandir}/ja/man1/mkvinfo.1*
 %lang(ja) %{_mandir}/ja/man1/mkvextract.1*
 %lang(ja) %{_mandir}/ja/man1/mkvpropedit.1*
 %lang(ko) %{_mandir}/ko/man1/mkvmerge.1*
-%lang(ko) %{_mandir}/ko/man1/mkvinfo.1*
 %lang(ko) %{_mandir}/ko/man1/mkvextract.1*
 %lang(ko) %{_mandir}/ko/man1/mkvpropedit.1*
 %lang(nl) %{_mandir}/nl/man1/mkvmerge.1*
-%lang(nl) %{_mandir}/nl/man1/mkvinfo.1*
 %lang(nl) %{_mandir}/nl/man1/mkvextract.1*
 %lang(nl) %{_mandir}/nl/man1/mkvpropedit.1*
 %lang(pl) %{_mandir}/pl/man1/mkvmerge.1*
-%lang(pl) %{_mandir}/pl/man1/mkvinfo.1*
 %lang(pl) %{_mandir}/pl/man1/mkvextract.1*
 %lang(pl) %{_mandir}/pl/man1/mkvpropedit.1*
 %lang(uk) %{_mandir}/uk/man1/mkvmerge.1*
-%lang(uk) %{_mandir}/uk/man1/mkvinfo.1*
 %lang(uk) %{_mandir}/uk/man1/mkvextract.1*
 %lang(uk) %{_mandir}/uk/man1/mkvpropedit.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/mkvmerge.1*
-%lang(zh_CN) %{_mandir}/zh_CN/man1/mkvinfo.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/mkvextract.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/mkvpropedit.1*
+
+%if %{without qt}
+%attr(755,root,root) %{_bindir}/mkvinfo
+%{_mandir}/man1/mkvinfo.1*
+%lang(ca) %{_mandir}/ca/man1/mkvinfo.1*
+%lang(de) %{_mandir}/de/man1/mkvinfo.1*
+%lang(es) %{_mandir}/es/man1/mkvinfo.1*
+%lang(ja) %{_mandir}/ja/man1/mkvinfo.1*
+%lang(ko) %{_mandir}/ko/man1/mkvinfo.1*
+%lang(nl) %{_mandir}/nl/man1/mkvinfo.1*
+%lang(pl) %{_mandir}/pl/man1/mkvinfo.1*
+%lang(uk) %{_mandir}/uk/man1/mkvinfo.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/mkvinfo.1*
+%endif
 
 %if %{with qt}
 %files gui
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/mkvinfo
 %attr(755,root,root) %{_bindir}/mkvtoolnix-gui
 %dir %{_datadir}/mkvtoolnix
 %dir %{_datadir}/mkvtoolnix/sounds
@@ -151,14 +155,24 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/mkvmerge.png
 %{_iconsdir}/hicolor/*/apps/mkvtoolnix-gui.png
 %{_iconsdir}/hicolor/*/apps/mkvpropedit.png
+%{_mandir}/man1/mkvinfo.1*
 %{_mandir}/man1/mkvtoolnix-gui.1*
+%lang(ca) %{_mandir}/ca/man1/mkvinfo.1*
 %lang(ca) %{_mandir}/ca/man1/mkvtoolnix-gui.1*
+%lang(de) %{_mandir}/de/man1/mkvinfo.1*
 %lang(de) %{_mandir}/de/man1/mkvtoolnix-gui.1*
+%lang(es) %{_mandir}/es/man1/mkvinfo.1*
 %lang(es) %{_mandir}/es/man1/mkvtoolnix-gui.1*
+%lang(ja) %{_mandir}/ja/man1/mkvinfo.1*
 %lang(ja) %{_mandir}/ja/man1/mkvtoolnix-gui.1*
+%lang(ko) %{_mandir}/ko/man1/mkvinfo.1*
 %lang(ko) %{_mandir}/ko/man1/mkvtoolnix-gui.1*
+%lang(nl) %{_mandir}/nl/man1/mkvinfo.1*
 %lang(nl) %{_mandir}/nl/man1/mkvtoolnix-gui.1*
+%lang(pl) %{_mandir}/pl/man1/mkvinfo.1*
 %lang(pl) %{_mandir}/pl/man1/mkvtoolnix-gui.1*
+%lang(uk) %{_mandir}/uk/man1/mkvinfo.1*
 %lang(uk) %{_mandir}/uk/man1/mkvtoolnix-gui.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/mkvinfo.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/mkvtoolnix-gui.1*
 %endif
