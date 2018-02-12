@@ -1,6 +1,5 @@
 # TODO:
 # - make -gui subpackages (Qt4 deps)
-# - boost autodetection fails ($BOOSTLIBDIR empty), so all boost libs must be passed --with-boost-xxx=xxxx
 #
 # Conditional build
 %bcond_with	verbose	# verbose build (V=1)
@@ -61,9 +60,6 @@ Narzędzia do filmów w formacie Matroska.
 	%{?with_qt:LCONVERT=/usr/bin/lconvert-qt5} \
 	--docdir=%{_datadir}/%{name} \
 	--%{?with_qt:en}%{!?with_qt:dis}able-qt \
-	--with-boost-filesystem=boost_filesystem \
-	--with-boost-regex=boost_regex \
-	--with-boost-system=boost_system \
 	%{?with_qt:--with-moc=/usr/bin/moc-qt5} \
 	%{?with_qt:--with-uic=/usr/bin/uic-qt5} \
 	--with-docbook-xsl-root=/usr/share/sgml/docbook/xsl-stylesheets
