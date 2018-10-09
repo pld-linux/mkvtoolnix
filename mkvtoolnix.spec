@@ -6,14 +6,14 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	20.0.0
+Version:	27.0.0
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
-Source0:	http://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	87a7ea4b6ace3cf954f86108a7d41a0f
+Source0:	https://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
+# Source0-md5:	67370772ea1e0d404f371813ac85c153
 Patch0:		%{name}-init_locales.patch
-URL:		http://www.bunkus.org/videotools/mkvtoolnix/
+URL:		https://www.bunkus.org/videotools/mkvtoolnix/
 %if %{with qt}
 BuildRequires:	Qt5Concurrent-devel >= 5.3.0
 BuildRequires:	Qt5Gui-devel >= 5.3.0
@@ -147,8 +147,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mkvtoolnix/sounds/finished-1.ogg
 %{_datadir}/mkvtoolnix/sounds/finished-2.ogg
 %{_datadir}/mkvtoolnix/sounds/finished-3.ogg
-%{_datadir}/mime/packages/mkvtoolnix.xml
-%{_desktopdir}/org.bunkus.mkvinfo.desktop
+%{_datadir}/metainfo/org.bunkus.mkvtoolnix-gui.appdata.xml
+%{_datadir}/mime/packages/org.bunkus.mkvtoolnix-gui.xml
 %{_desktopdir}/org.bunkus.mkvtoolnix-gui.desktop
 %{_iconsdir}/hicolor/*/apps/mkvextract.png
 %{_iconsdir}/hicolor/*/apps/mkvinfo.png
