@@ -6,18 +6,20 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	35.0.0
+Version:	38.0.0
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	https://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	915c728e7ba3fc5dd42110db5e89c703
+# Source0-md5:	ff896bf627fec8670297aaff50cbe74a
 Patch0:		%{name}-init_locales.patch
 URL:		https://www.bunkus.org/videotools/mkvtoolnix/
 %if %{with qt}
 BuildRequires:	Qt5Concurrent-devel >= 5.3.0
+BuildRequires:	Qt5DBus-devel >= 5.3.0
 BuildRequires:	Qt5Gui-devel >= 5.3.0
 BuildRequires:	Qt5Multimedia-devel >= 5.3.0
+BuildRequires:	Qt5Widgets-devel >= 5.3.0
 BuildRequires:	cmark-devel
 BuildRequires:	pkgconfig
 BuildRequires:	qt5-build >= 5.3.0
