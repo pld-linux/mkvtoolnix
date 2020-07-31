@@ -7,7 +7,7 @@ Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
 Version:	38.0.0
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	https://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
@@ -52,11 +52,16 @@ Narzędzia do filmów w formacie Matroska.
 
 %package gui
 Summary:	Qt GUI for mkvmerge including a chapter and a header editor
+Summary(pl.UTF-8):	Graficzny interfejs Qt do mkvmerge, zawierający edytor rozdziałów i nagłówków
 Group:		Applications/Multimedia
 Requires:	%{name} = %{version}-%{release}
 
 %description gui
 Qt GUI for mkvmerge including a chapter and a header editor.
+
+%description gui -l pl.UTF-8
+Graficzny interfejs Qt do mkvmerge, zawierający edytor rozdziałów i
+nagłówków.
 
 %prep
 %setup -q
