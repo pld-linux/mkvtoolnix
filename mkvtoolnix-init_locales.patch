@@ -1,11 +1,11 @@
 --- mkvtoolnix-2.8.0/src/common/translation.cpp.orig	2009-05-10 16:14:28.000000000 +0200
 +++ mkvtoolnix-2.8.0/src/common/translation.cpp	2009-05-10 15:05:54.000000000 +0200
 @@ -210,7 +210,7 @@
-   mxverb(4, boost::format("[init_locales chosen locale %1%]\n") % chosen_locale);
+     chosen_locale = "C";
  
    if (chosen_locale.empty())
 -    mxerror(Y("The locale could not be set properly. Check the LANG, LC_ALL and LC_MESSAGES environment variables.\n"));
 +    mxwarn("The locale could not be set properly. Check the LANG, LC_ALL and LC_MESSAGES environment variables.\n");
  
-   locale_dir = MTX_LOCALE_DIR;
- # endif  // SYS_WINDOWS
+   std::locale utf8_locale(std::locale(), new mtx::utf8_codecvt_facet);
+   std::locale::global(utf8_locale);
