@@ -6,12 +6,12 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	38.0.0
-Release:	5
+Version:	60.0.0
+Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	https://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	ff896bf627fec8670297aaff50cbe74a
+# Source0-md5:	b9258789b132da04be92f12c18b1b801
 Patch0:		%{name}-init_locales.patch
 URL:		https://www.bunkus.org/videotools/mkvtoolnix/
 %if %{with qt}
@@ -102,6 +102,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/mkvmerge.1*
 %{_mandir}/man1/mkvextract.1*
 %{_mandir}/man1/mkvpropedit.1*
+%lang(bg) %{_mandir}/bg/man1/mkvmerge.1*
+%lang(bg) %{_mandir}/bg/man1/mkvextract.1*
+%lang(bg) %{_mandir}/bg/man1/mkvpropedit.1*
 %lang(ca) %{_mandir}/ca/man1/mkvmerge.1*
 %lang(ca) %{_mandir}/ca/man1/mkvextract.1*
 %lang(ca) %{_mandir}/ca/man1/mkvpropedit.1*
@@ -111,6 +114,12 @@ rm -rf $RPM_BUILD_ROOT
 %lang(es) %{_mandir}/es/man1/mkvmerge.1*
 %lang(es) %{_mandir}/es/man1/mkvextract.1*
 %lang(es) %{_mandir}/es/man1/mkvpropedit.1*
+%lang(fr) %{_mandir}/fr/man1/mkvmerge.1*
+%lang(fr) %{_mandir}/fr/man1/mkvextract.1*
+%lang(fr) %{_mandir}/fr/man1/mkvpropedit.1*
+%lang(it) %{_mandir}/it/man1/mkvmerge.1*
+%lang(it) %{_mandir}/it/man1/mkvextract.1*
+%lang(it) %{_mandir}/it/man1/mkvpropedit.1*
 %lang(ja) %{_mandir}/ja/man1/mkvmerge.1*
 %lang(ja) %{_mandir}/ja/man1/mkvextract.1*
 %lang(ja) %{_mandir}/ja/man1/mkvpropedit.1*
@@ -123,25 +132,36 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_mandir}/pl/man1/mkvmerge.1*
 %lang(pl) %{_mandir}/pl/man1/mkvextract.1*
 %lang(pl) %{_mandir}/pl/man1/mkvpropedit.1*
+%lang(ru) %{_mandir}/ru/man1/mkvmerge.1*
+%lang(ru) %{_mandir}/ru/man1/mkvextract.1*
+%lang(ru) %{_mandir}/ru/man1/mkvpropedit.1*
 %lang(uk) %{_mandir}/uk/man1/mkvmerge.1*
 %lang(uk) %{_mandir}/uk/man1/mkvextract.1*
 %lang(uk) %{_mandir}/uk/man1/mkvpropedit.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/mkvmerge.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/mkvextract.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/mkvpropedit.1*
+%lang(zh_TW) %{_mandir}/zh_TW/man1/mkvmerge.1*
+%lang(zh_TW) %{_mandir}/zh_TW/man1/mkvextract.1*
+%lang(zh_TW) %{_mandir}/zh_TW/man1/mkvpropedit.1*
 
 %if %{without qt}
 %attr(755,root,root) %{_bindir}/mkvinfo
 %{_mandir}/man1/mkvinfo.1*
+%lang(bg) %{_mandir}/bg/man1/mkvinfo.1*
 %lang(ca) %{_mandir}/ca/man1/mkvinfo.1*
 %lang(de) %{_mandir}/de/man1/mkvinfo.1*
 %lang(es) %{_mandir}/es/man1/mkvinfo.1*
+%lang(fr) %{_mandir}/fr/man1/mkvinfo.1*
+%lang(it) %{_mandir}/it/man1/mkvinfo.1*
 %lang(ja) %{_mandir}/ja/man1/mkvinfo.1*
 %lang(ko) %{_mandir}/ko/man1/mkvinfo.1*
 %lang(nl) %{_mandir}/nl/man1/mkvinfo.1*
 %lang(pl) %{_mandir}/pl/man1/mkvinfo.1*
+%lang(ru) %{_mandir}/ru/man1/mkvinfo.1*
 %lang(uk) %{_mandir}/uk/man1/mkvinfo.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/mkvinfo.1*
+%lang(zh_TW) %{_mandir}/zh_TW/man1/mkvinfo.1*
 %endif
 
 %if %{with qt}
@@ -164,12 +184,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/mkvpropedit.png
 %{_mandir}/man1/mkvinfo.1*
 %{_mandir}/man1/mkvtoolnix-gui.1*
+%lang(bg) %{_mandir}/bg/man1/mkvinfo.1*
+%lang(bg) %{_mandir}/bg/man1/mkvtoolnix-gui.1*
 %lang(ca) %{_mandir}/ca/man1/mkvinfo.1*
 %lang(ca) %{_mandir}/ca/man1/mkvtoolnix-gui.1*
 %lang(de) %{_mandir}/de/man1/mkvinfo.1*
 %lang(de) %{_mandir}/de/man1/mkvtoolnix-gui.1*
 %lang(es) %{_mandir}/es/man1/mkvinfo.1*
 %lang(es) %{_mandir}/es/man1/mkvtoolnix-gui.1*
+%lang(fr) %{_mandir}/fr/man1/mkvinfo.1*
+%lang(fr) %{_mandir}/fr/man1/mkvtoolnix-gui.1*
+%lang(it) %{_mandir}/it/man1/mkvinfo.1*
+%lang(it) %{_mandir}/it/man1/mkvtoolnix-gui.1*
 %lang(ja) %{_mandir}/ja/man1/mkvinfo.1*
 %lang(ja) %{_mandir}/ja/man1/mkvtoolnix-gui.1*
 %lang(ko) %{_mandir}/ko/man1/mkvinfo.1*
@@ -178,8 +204,12 @@ rm -rf $RPM_BUILD_ROOT
 %lang(nl) %{_mandir}/nl/man1/mkvtoolnix-gui.1*
 %lang(pl) %{_mandir}/pl/man1/mkvinfo.1*
 %lang(pl) %{_mandir}/pl/man1/mkvtoolnix-gui.1*
+%lang(ru) %{_mandir}/ru/man1/mkvinfo.1*
+%lang(ru) %{_mandir}/ru/man1/mkvtoolnix-gui.1*
 %lang(uk) %{_mandir}/uk/man1/mkvinfo.1*
 %lang(uk) %{_mandir}/uk/man1/mkvtoolnix-gui.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/mkvinfo.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/mkvtoolnix-gui.1*
+%lang(zh_TW) %{_mandir}/zh_TW/man1/mkvinfo.1*
+%lang(zh_TW) %{_mandir}/zh_TW/man1/mkvtoolnix-gui.1*
 %endif
