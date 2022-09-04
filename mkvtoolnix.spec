@@ -6,12 +6,12 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	60.0.0
-Release:	3
+Version:	70.0.0
+Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	https://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	b9258789b132da04be92f12c18b1b801
+# Source0-md5:	4753e5434009281a3e9e75a17e827a6e
 Patch0:		%{name}-init_locales.patch
 URL:		https://www.bunkus.org/videotools/mkvtoolnix/
 %if %{with qt}
@@ -171,9 +171,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mkvtoolnix-gui
 %dir %{_datadir}/mkvtoolnix
 %dir %{_datadir}/mkvtoolnix/sounds
-%{_datadir}/mkvtoolnix/sounds/finished-1.ogg
-%{_datadir}/mkvtoolnix/sounds/finished-2.ogg
-%{_datadir}/mkvtoolnix/sounds/finished-3.ogg
+%{_datadir}/mkvtoolnix/sounds/finished-1.webm
+%{_datadir}/mkvtoolnix/sounds/finished-2.webm
+%{_datadir}/mkvtoolnix/sounds/finished-3.webm
 %{_datadir}/metainfo/org.bunkus.mkvtoolnix-gui.appdata.xml
 %{_datadir}/mime/packages/org.bunkus.mkvtoolnix-gui.xml
 %{_desktopdir}/org.bunkus.mkvtoolnix-gui.desktop

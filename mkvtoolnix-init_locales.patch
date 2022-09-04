@@ -7,5 +7,5 @@
 -    mxerror(Y("The locale could not be set properly. Check the LANG, LC_ALL and LC_MESSAGES environment variables.\n"));
 +    mxwarn("The locale could not be set properly. Check the LANG, LC_ALL and LC_MESSAGES environment variables.\n");
  
-   std::locale utf8_locale(std::locale(), new mtx::utf8_codecvt_facet);
-   std::locale::global(utf8_locale);
+   translation_c::set_active_translation(chosen_locale);
+ 
