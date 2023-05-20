@@ -1,29 +1,30 @@
 #
 # Conditional build
 %bcond_with	verbose	# verbose build (V=1)
-%bcond_without	qt	# disable GUI build (Qt4 deps)
+%bcond_without	qt	# disable GUI build (Qt6 deps)
 #
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	70.0.0
-Release:	3
+Version:	76.0
+Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	https://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	4753e5434009281a3e9e75a17e827a6e
+# Source0-md5:	78370627a17447c2ef19ccad4a6dee54
 Patch0:		%{name}-init_locales.patch
 URL:		https://www.bunkus.org/videotools/mkvtoolnix/
 %if %{with qt}
-BuildRequires:	Qt5Concurrent-devel >= 5.3.0
-BuildRequires:	Qt5DBus-devel >= 5.3.0
-BuildRequires:	Qt5Gui-devel >= 5.3.0
-BuildRequires:	Qt5Multimedia-devel >= 5.3.0
-BuildRequires:	Qt5Widgets-devel >= 5.3.0
+BuildRequires:	Qt6Concurrent-devel
+BuildRequires:	Qt6DBus-devel
+BuildRequires:	Qt6Gui-devel
+BuildRequires:	Qt6Multimedia-devel
+BuildRequires:	Qt6Svg-devel
+BuildRequires:	Qt6Widgets-devel
 BuildRequires:	cmark-devel
 BuildRequires:	pkgconfig
-BuildRequires:	qt5-build >= 5.3.0
-BuildRequires:	qt5-linguist >= 5.3.0
+BuildRequires:	qt6-build
+BuildRequires:	qt6-linguist
 %endif
 BuildRequires:	autoconf
 BuildRequires:	boost-devel >= 1.49.0
@@ -70,11 +71,17 @@ nagłówków.
 %build
 %{__autoconf}
 %configure \
-	%{?with_qt:LCONVERT=/usr/bin/lconvert-qt5} \
+%if %{with qt}
+	LCONVERT=/usr/bin/lconvert-qt6 \
+	--enable-qt \
+	--with-qmake6=/usr/bin/qmake-qt6 \
+	--with-moc=/usr/bin/moc-qt6 \
+	--with-uic=/usr/bin/uic-qt6 \
+%else
+	--disable-qt \
+	--disable-qt6 \
+%endif
 	--docdir=%{_datadir}/%{name} \
-	--%{?with_qt:en}%{!?with_qt:dis}able-qt \
-	%{?with_qt:--with-moc=/usr/bin/moc-qt5} \
-	%{?with_qt:--with-uic=/usr/bin/uic-qt5} \
 	--with-docbook-xsl-root=/usr/share/sgml/docbook/xsl-stylesheets
 
 LC_ALL="C.UTF-8" rake %{?_smp_mflags} %{?with_verbose:V=1}
