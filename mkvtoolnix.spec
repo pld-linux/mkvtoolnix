@@ -6,12 +6,12 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	78.0
-Release:	2
+Version:	84.0
+Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	https://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	4ca1f5e17c1297f9be0ecfca51f8c618
+# Source0-md5:	e20fb7c808c93633f29d7efbc5ddae64
 Patch0:		%{name}-init_locales.patch
 URL:		https://www.bunkus.org/videotools/mkvtoolnix/
 %if %{with qt}
@@ -118,6 +118,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/mkvmerge.1*
 %{_mandir}/man1/mkvextract.1*
 %{_mandir}/man1/mkvpropedit.1*
+%lang(be) %{_mandir}/be/man1/mkvmerge.1*
+%lang(be) %{_mandir}/be/man1/mkvextract.1*
+%lang(be) %{_mandir}/be/man1/mkvpropedit.1*
 %lang(bg) %{_mandir}/bg/man1/mkvmerge.1*
 %lang(bg) %{_mandir}/bg/man1/mkvextract.1*
 %lang(bg) %{_mandir}/bg/man1/mkvpropedit.1*
@@ -196,6 +199,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/mkvpropedit.png
 %{_mandir}/man1/mkvinfo.1*
 %{_mandir}/man1/mkvtoolnix-gui.1*
+%lang(be) %{_mandir}/be/man1/mkvinfo.1*
+%lang(be) %{_mandir}/be/man1/mkvtoolnix-gui.1*
 %lang(bg) %{_mandir}/bg/man1/mkvinfo.1*
 %lang(bg) %{_mandir}/bg/man1/mkvtoolnix-gui.1*
 %lang(ca) %{_mandir}/ca/man1/mkvinfo.1*
