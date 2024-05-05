@@ -15,16 +15,15 @@ Source0:	https://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}
 Patch0:		%{name}-init_locales.patch
 URL:		https://www.bunkus.org/videotools/mkvtoolnix/
 %if %{with qt}
-# or qt5 >= 5.9.0
-BuildRequires:	Qt6Concurrent-devel >= 6.1.0
-BuildRequires:	Qt6DBus-devel >= 6.1.0
-BuildRequires:	Qt6Gui-devel >= 6.1.0
-BuildRequires:	Qt6Multimedia-devel >= 6.1.0
-BuildRequires:	Qt6Svg-devel >= 6.1.0
-BuildRequires:	Qt6Widgets-devel >= 6.1.0
+BuildRequires:	Qt6Concurrent-devel >= 6.2.0
+BuildRequires:	Qt6DBus-devel >= 6.2.0
+BuildRequires:	Qt6Gui-devel >= 6.2.0
+BuildRequires:	Qt6Multimedia-devel >= 6.2.0
+BuildRequires:	Qt6Svg-devel >= 6.2.0
+BuildRequires:	Qt6Widgets-devel >= 6.2.0
 BuildRequires:	cmark-devel
-BuildRequires:	qt6-build >= 6.1.0
-BuildRequires:	qt6-linguist >= 6.1.0
+BuildRequires:	qt6-build >= 6.2.0
+BuildRequires:	qt6-linguist >= 6.2.0
 %endif
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	boost-devel >= 1.49.0
@@ -33,11 +32,11 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	flac-devel
 BuildRequires:	gettext-tools
 BuildRequires:	libebml-devel >= 1.4.4
-BuildRequires:	libfmt-devel >= 6.1.0
+BuildRequires:	libfmt-devel >= 8.0.0
 BuildRequires:	libmagic-devel
 BuildRequires:	libmatroska-devel >= 1.7.1
 BuildRequires:	libogg-devel
-BuildRequires:	libstdc++-devel >= 6:7
+BuildRequires:	libstdc++-devel >= 6:10
 BuildRequires:	libvorbis-devel
 BuildRequires:	lzo-devel
 BuildRequires:	nlohmann-json-devel
@@ -48,7 +47,7 @@ BuildRequires:	ruby-modules
 BuildRequires:	ruby-rake
 BuildRequires:	zlib-devel
 Requires:	libebml >= 1.4.4
-Requires:	libfmt >= 6.1.0
+Requires:	libfmt >= 8.0.0
 Requires:	libmatroska >= 1.7.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -80,13 +79,11 @@ nagłówków.
 %configure \
 %if %{with qt}
 	LCONVERT=/usr/bin/lconvert-qt6 \
-	--enable-qt \
 	--with-qmake6=/usr/bin/qmake-qt6 \
 	--with-moc=/usr/bin/moc-qt6 \
 	--with-uic=/usr/bin/uic-qt6 \
 %else
-	--disable-qt \
-	--disable-qt6 \
+	--disable-gui \
 %endif
 	--docdir=%{_datadir}/%{name} \
 	--with-docbook-xsl-root=/usr/share/sgml/docbook/xsl-stylesheets
