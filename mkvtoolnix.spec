@@ -6,12 +6,12 @@
 Summary:	Matroska video utilities
 Summary(pl.UTF-8):	Narzędzia do filmów w formacie Matroska
 Name:		mkvtoolnix
-Version:	84.0
+Version:	87.0
 Release:	1
 License:	GPL v2
 Group:		Applications/Multimedia
 Source0:	https://www.bunkus.org/videotools/mkvtoolnix/sources/%{name}-%{version}.tar.xz
-# Source0-md5:	e20fb7c808c93633f29d7efbc5ddae64
+# Source0-md5:	db6c6be3cf6a74322bc9ede3bf2d2f1e
 Patch0:		%{name}-init_locales.patch
 URL:		https://www.bunkus.org/videotools/mkvtoolnix/
 %if %{with qt}
@@ -26,11 +26,13 @@ BuildRequires:	qt6-build >= 6.2.0
 BuildRequires:	qt6-linguist >= 6.2.0
 %endif
 BuildRequires:	autoconf >= 2.69
-BuildRequires:	boost-devel >= 1.49.0
+BuildRequires:	boost-devel >= 1.66.0
 BuildRequires:	bzip2-devel
 BuildRequires:	docbook-style-xsl
 BuildRequires:	flac-devel
 BuildRequires:	gettext-tools
+BuildRequires:	gmp-devel
+BuildRequires:	libdvdread-devel
 BuildRequires:	libebml-devel >= 1.4.4
 BuildRequires:	libfmt-devel >= 8.0.0
 BuildRequires:	libmagic-devel
@@ -38,13 +40,16 @@ BuildRequires:	libmatroska-devel >= 1.7.1
 BuildRequires:	libogg-devel
 BuildRequires:	libstdc++-devel >= 6:10
 BuildRequires:	libvorbis-devel
+BuildRequires:	libxslt-progs
 BuildRequires:	lzo-devel
 BuildRequires:	nlohmann-json-devel
+BuildRequires:	pandoc
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	po4a
 BuildRequires:	pugixml-devel
 BuildRequires:	ruby-modules
 BuildRequires:	ruby-rake
+BuildRequires:	utf8cpp-devel
 BuildRequires:	zlib-devel
 Requires:	libebml >= 1.4.4
 Requires:	libfmt >= 8.0.0
@@ -76,12 +81,15 @@ nagłówków.
 
 %build
 %{__autoconf}
+# TODO: drop -DBOOST_CSTDFLOAT_NO_LIBQUADMATH_SUPPORT=1 after boost update to gcc 14 ready
+CPPFLAGS="%{rpmcppflags} -DBOOST_CSTDFLOAT_NO_LIBQUADMATH_SUPPORT=1 -I/usr/include/utf8cpp"
 %configure \
 %if %{with qt}
 	LCONVERT=/usr/bin/lconvert-qt6 \
+	MOC=/usr/bin/moc-qt6 \
+	RCC=/usr/bin/rcc-qt6 \
+	UIC=/usr/bin/uic-qt6 \
 	--with-qmake6=/usr/bin/qmake-qt6 \
-	--with-moc=/usr/bin/moc-qt6 \
-	--with-uic=/usr/bin/uic-qt6 \
 %else
 	--disable-gui \
 %endif
@@ -99,7 +107,8 @@ rake install \
 	INSTALL="install -cp" \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{sr_RS{,@latin},zh_SG}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr_RS,sr}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr_RS@latin,sr@latin}
 
 %find_lang %{name}
 
@@ -142,6 +151,9 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ko) %{_mandir}/ko/man1/mkvmerge.1*
 %lang(ko) %{_mandir}/ko/man1/mkvextract.1*
 %lang(ko) %{_mandir}/ko/man1/mkvpropedit.1*
+%lang(nb) %{_mandir}/nb/man1/mkvextract.1*
+%lang(nb) %{_mandir}/nb/man1/mkvmerge.1*
+%lang(nb) %{_mandir}/nb/man1/mkvpropedit.1*
 %lang(nl) %{_mandir}/nl/man1/mkvmerge.1*
 %lang(nl) %{_mandir}/nl/man1/mkvextract.1*
 %lang(nl) %{_mandir}/nl/man1/mkvpropedit.1*
@@ -172,6 +184,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(it) %{_mandir}/it/man1/mkvinfo.1*
 %lang(ja) %{_mandir}/ja/man1/mkvinfo.1*
 %lang(ko) %{_mandir}/ko/man1/mkvinfo.1*
+%lang(nb) %{_mandir}/nb/man1/mkvinfo.1*
 %lang(nl) %{_mandir}/nl/man1/mkvinfo.1*
 %lang(pl) %{_mandir}/pl/man1/mkvinfo.1*
 %lang(ru) %{_mandir}/ru/man1/mkvinfo.1*
@@ -214,6 +227,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ja) %{_mandir}/ja/man1/mkvtoolnix-gui.1*
 %lang(ko) %{_mandir}/ko/man1/mkvinfo.1*
 %lang(ko) %{_mandir}/ko/man1/mkvtoolnix-gui.1*
+%lang(nb) %{_mandir}/nb/man1/mkvinfo.1*
+%lang(nb) %{_mandir}/nb/man1/mkvtoolnix-gui.1*
 %lang(nl) %{_mandir}/nl/man1/mkvinfo.1*
 %lang(nl) %{_mandir}/nl/man1/mkvtoolnix-gui.1*
 %lang(pl) %{_mandir}/pl/man1/mkvinfo.1*
